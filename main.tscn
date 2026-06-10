@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://coofy7hsq27pt"]
+
+[ext_resource type="Script" uid="uid://cj5ib42msr1va" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://ouxsv4v68ul7" path="res://player.tscn" id="1_ig7tw"]
+
+[node name="Main" type="Node" unique_id=291844032]
+script = ExtResource("1_0xm2m")
+
+[node name="Player" parent="." unique_id=1221109721 instance=ExtResource("1_ig7tw")]
+position = Vector2(237, 326)
+
+[node name="MobTimer" type="Timer" parent="." unique_id=1610621151]
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=487226464]
+
+[node name="PlayerStartPosition" type="Marker2D" parent="." unique_id=1654478818]
+position = Vector2(228, 638)
