@@ -2,12 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://bkv6egb7dnyae" path="res://assets/player/playerShip1_blue.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://b4o4qqwdxbl0u" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://ddxe1pjlkw2uk" path="res://bullet.tscn" id="2_i3pqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(74, 57)
 
 [node name="Player" type="Area2D" unique_id=1221109721]
 script = ExtResource("1_onrkg")
+bullet_scene = ExtResource("2_i3pqv")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=349690560]
@@ -23,4 +25,8 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 
+[node name="ShootMarker" type="Marker2D" parent="." unique_id=872300578]
+position = Vector2(0, -28)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -36,5 +36,9 @@ texture = ExtResource("4_wujgv")
 [node name="ShootTimer" type="Timer" parent="." unique_id=1918952855]
 autostart = true
 
+[node name="ShootMarker" type="Marker2D" parent="." unique_id=674386164]
+position = Vector2(0, 43)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
