@@ -12,7 +12,7 @@ mob_scene = ExtResource("2_h2yge")
 position = Vector2(237, 326)
 
 [node name="MobTimer" type="Timer" parent="." unique_id=1610621151]
-wait_time = 5.0
+one_shot = true
 
 [node name="ScoreTimer" type="Timer" parent="." unique_id=487226464]
 

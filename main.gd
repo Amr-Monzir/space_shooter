@@ -2,8 +2,11 @@ extends Node
 
 @export var score = 0
 @export var mob_scene: PackedScene
+var screenSize
 
 func _ready() -> void:
+	var window = get_window()
+	screenSize = window.size
 	new_game()
 	
 func new_game():
@@ -12,17 +15,13 @@ func new_game():
 	$MobTimer.start()
 	$ScoreTimer.start()
 
-
 func _on_mob_timer_timeout() -> void:
 	spawn_mob()
 	
 func spawn_mob():
 	var mob = mob_scene.instantiate()
 
-	var window = get_window()
-	var size = window.size
-
-	mob.position = Vector2( randi_range(0, size.x) , 0)
+	mob.position = Vector2( randi_range(100, screenSize.x - 100) , 0)
 	
 	add_child(mob)
 	

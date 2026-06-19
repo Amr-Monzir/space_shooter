@@ -8,9 +8,9 @@
 size = Vector2(74, 57)
 
 [node name="Player" type="Area2D" unique_id=1221109721]
+collision_mask = 6
 script = ExtResource("1_onrkg")
 bullet_scene = ExtResource("2_i3pqv")
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=349690560]
 scale = Vector2(0.75, 0.75)
@@ -26,7 +26,12 @@ one_shot = true
 autostart = true
 
 [node name="ShootMarker" type="Marker2D" parent="." unique_id=872300578]
-position = Vector2(0, -28)
+position = Vector2(0, -29)
 
+[node name="SafeTimer" type="Timer" parent="." unique_id=195281752]
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="SafeTimer" to="." method="_on_safe_timer_timeout"]

@@ -9,11 +9,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hb8ge"]
 size = Vector2(104, 85)
 
-[node name="Enemy" type="RigidBody2D" unique_id=1547213236]
-collision_mask = 0
-gravity_scale = 0.0
+[node name="Enemy" type="Area2D" unique_id=34364124]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_epg4t")
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1900978592]
 position = Vector2(0, 0.5)
@@ -37,8 +36,9 @@ texture = ExtResource("4_wujgv")
 autostart = true
 
 [node name="ShootMarker" type="Marker2D" parent="." unique_id=674386164]
-position = Vector2(0, 43)
+position = Vector2(0, 44)
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

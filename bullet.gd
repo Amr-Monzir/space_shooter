@@ -1,13 +1,15 @@
 class_name Bullet
 extends Area2D
 
-
 enum Direction {up, down}
 enum BulletType {playerBullet, enemyBullet}
 
 var direction: Direction = Direction.up
 var type: BulletType = BulletType.enemyBullet
 
+@export var speed = 800
+
+	
 static func new_enemy_bullet():
 	var my_scene: PackedScene = preload("res://bullet.tscn")
 	var newBullet: Bullet = my_scene.instantiate()
@@ -28,11 +30,19 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var velocity = Vector2.ZERO
 	if direction == Direction.up:
-		position.y = position.y - 5;
+		velocity = Vector2(0, -1)
 	else:
-		position.y = position.y + 5;
-		
+		velocity = Vector2(0, 1)
+	
+	position += delta * velocity * speed
+	
+	# DEBUG: Show what the bullet "sees"
+	var overlap = get_overlapping_bodies()
+	if overlap.size() > 0:
+		print("Overlapping bodies:", overlap)
+
 
 func pickSprite():
 	var sprite;
@@ -46,6 +56,9 @@ func pickSprite():
 	sprite.show()
 	otherSprite.hide()
 
-
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
+
+func _on_body_entered(body: Node) -> void:
+	print("✅ HIT!", body.name)
 	queue_free()
